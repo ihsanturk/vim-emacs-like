@@ -7,7 +7,6 @@ im <C-a> <C-o>:call <SID>home()<CR>
 im <C-e> <End>
 im <C-d> <Del>
 im <C-h> <BS>
-im <C-k> <C-r>=<SID>kill_line()<CR>
 im <M-d> <C-o>de
 im <M-b> <S-Left>
 im <M-f> <S-Right>
@@ -33,16 +32,6 @@ function! s:home()
 	normal! ^
 	if col('.') == start_col
 		normal! 0
-	endif
-	return ''
-endfunction
-
-function! s:kill_line()
-	let [text_before_cursor, text_after_cursor] = s:split_line_text_at_cursor()
-	if len(text_after_cursor) == 0
-		normal! J
-	else
-		call setline(line('.'), text_before_cursor)
 	endif
 	return ''
 endfunction
